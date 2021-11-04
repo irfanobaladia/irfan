@@ -1,0 +1,103 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+   <record model="ir.ui.view" id="rkiza_id">
+      <field name="name">descrition Form</field>
+      <field name="model">rkiza.module</field>
+      <field name="arch" type="xml">
+        <form>
+<header>
+                  <button name="action_hr" string="HR Approval" type="object" class="oe_highlight" attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                  <button name="action_ceo" string="CEO Approval" type="object" class="oe_highlight" attrs="{'invisible': [('state', '!=', 'hr')]}"/>
+                  <button name="action_finance" string="Finance Approval" type="object" class="oe_highlight" attrs="{'invisible': [('state', '!=', 'ceo')]}"/>
+                  <button name="action_done" string="Close" type="object" class="oe_highlight" attrs="{'invisible': [('state', '!=', 'finance')]}"/>
+                  <button name="action_draft" string="Set to Draft" type="object" attrs="{'invisible': [('state', '!=', 'done')]}"/>
+
+                  <field name="state" widget="statusbar" statusbar_visible="draft,hr,ceo,finance,done"/>
+                </header>
+          <sheet>
+            <group>
+              <group string="Information">
+                <field name="city_name"/>
+                 <field name="emp_name"/>
+                <field name="emp_number"/>
+                <field name="branch"/>
+
+              </group>
+
+            </group>
+            <group string="Customer information">
+                <field name="customer"/>
+
+
+            </group>
+      </sheet>
+        </form>
+      </field>
+    </record>
+       <record model="ir.ui.view" id="rkiza_tree_id">
+      <field name="name">branch Tree</field>
+      <field name="model">rkiza.module</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="city_name"/>
+          <field name="emp_name"/>
+          <field name="emp_number"/>
+          <field name="customer"/>
+        </tree>
+      </field>
+       </record>
+
+      <record model="ir.actions.act_window" id="rkiza_action_id">
+      <field name="name">city</field>
+      <field name="res_model">rkiza.module</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+  <menuitem name="RKiza" id="city_menu_sub"  action="rkiza_action_id" string="city"/>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="/opt/odoo13/odoo-custom-addons/rkiza.action_window">
+      <field name="name">/opt/odoo13/odoo-custom-addons/Rkiza window</field>
+      <field name="res_model">/opt/odoo13/odoo-custom-addons/rkiza./opt/odoo13/odoo-custom-addons/rkiza</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="/opt/odoo13/odoo-custom-addons/rkiza.action_server">
+      <field name="name">/opt/odoo13/odoo-custom-addons/Rkiza server</field>
+      <field name="model_id" ref="model_/opt/odoo13/odoo-custom-addons/rkiza_/opt/odoo13/odoo-custom-addons/rkiza"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="/opt/odoo13/odoo-custom-addons/Rkiza" id="/opt/odoo13/odoo-custom-addons/rkiza.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="/opt/odoo13/odoo-custom-addons/rkiza.menu_1" parent="/opt/odoo13/odoo-custom-addons/rkiza.menu_root"/>
+    <menuitem name="Menu 2" id="/opt/odoo13/odoo-custom-addons/rkiza.menu_2" parent="/opt/odoo13/odoo-custom-addons/rkiza.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="/opt/odoo13/odoo-custom-addons/rkiza.menu_1_list" parent="/opt/odoo13/odoo-custom-addons/rkiza.menu_1"
+              action="/opt/odoo13/odoo-custom-addons/rkiza.action_window"/>
+    <menuitem name="Server to list" id="/opt/odoo13/odoo-custom-addons/rkiza" parent="/opt/odoo13/odoo-custom-addons/rkiza.menu_2"
+              action="/opt/odoo13/odoo-custom-addons/rkiza.action_server"/>
+-->
+  </data>
+</odoo>
